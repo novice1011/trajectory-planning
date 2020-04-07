@@ -11,7 +11,7 @@ slideOptions:
 
 # Trajectory planning
 
-Summary from book of [Professor Peter Corke](https://link.springer.com/book/10.1007%2F978-3-642-20144-8) and [John J. Craig](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)
+Summary from the book of [Professor Peter Corke](https://link.springer.com/book/10.1007%2F978-3-642-20144-8) and [John J. Craig](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)
 
 For better look check this note in [HackMD.io](https://hackmd.io/@libernormous/trajectory-planning)
 
@@ -22,8 +22,8 @@ by:
 
 # Intro
 + it is explained on Professor Peter Corke [[1]](https://link.springer.com/book/10.1007%2F978-3-642-20144-8) book page 44 and John J. Craig [[2]](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040) page 207
-+ Path is a way from one point to a another point
-+ Trajectory is a path with at spesific timing
++ Path is a way from one point to another point
++ Trajectory is a path with a specific timing
 
 ---
 
@@ -68,9 +68,9 @@ $$
 1. Decide your initial position $s_0$ and final position $s_T$
 2. Decide your initial velocity $\dot{s_0}$ and final velocity $\dot{s_T}$
 3. Decide your initial acceleration $\ddot{s_0}$ and final acceleration $\ddot{s_T}$
-4. Find coeficient $A\ B\ C\ D\ E\ F$
-5. How? inverse the matrix ofcourse!
-6. Note: this steps is only for 1 axis, repeat the process for another axis
+4. Find coefficient $A\ B\ C\ D\ E\ F$
+5. How? inverse the matrix of course!
+6. Note: this step is only for 1 axis, repeat the process for another axis
 7. Note: $s_0$ is only for when $t=0$, and $s_t$ is only for when $t=T$
 
 ----
@@ -108,7 +108,7 @@ Depends on what you want. Do you want to actuate using
 ## CODE
 
 ```python=0
-import numpy as np
+import NumPy as np
 import matplotlib.pyplot as plt
 
 # %%
@@ -163,7 +163,7 @@ plt.plot(y[0,0,:],'r',y[1,0,:],'g',y[2,0,:],'b')
 
 ## Shift the time
 
-To shift a signal $f(x)=a+bx$ to the right (delay), we can do $f(x-\tau)=a+b(x-\tau)$ with $\tau$ as the amount of delay. So our matrix became more general like this:
+To shift a signal $f(x)=a+bx$ to the right (delay), we can do $f(x-\tau)=a+b(x-\tau)$ with $\tau$ as the amount of delay. Our matrix became more general like this:
 
 $$
 \left(\begin{matrix}
@@ -303,11 +303,11 @@ RESULT:
 
 ----
 
-1. Because the previous movement method actuate our motor to full speed only at 50% of the total time
+1. Because the previous movement method actuates our motor to full speed only at 50% of the total time
 2. That case, we need more linear area to drive our motor full speed
-3. Check Ref [[3]](https://smartech.gatech.edu/bitstream/handle/1853/41948/ParabolicBlends.pdf). This guy has a very intuitive explaination that helps me write the code
-4. We use via as transition between linear movement
-5. Around this via we introtuce blend time to smooth the speed transition
+3. Check Ref [[3]](https://smartech.gatech.edu/bitstream/handle/1853/41948/ParabolicBlends.pdf). This guy has a very intuitive explanation that helps me write the code
+4. We use via a transition between linear movement
+5. Around this via we introduce blend time to smooth the speed transition
 6. On linear area speed is constant
 7. On parabolic area acceleration is constant but speed is changing  from $v_0$ to $0$ then to $v_f$
 
@@ -321,12 +321,12 @@ q(t) = q_i + v_i*(t-T_i)\\
 \ddot{q}(t) = 0
 $$
 
-Where $T_i$ is time delay. $v_i$ can be calculated or specified
-I have 2 different code for different need. If you only use linear you might want `lerp2()`. `lerp()` will be used in our next function
+Where $T_i$ is the time delay. $v_i$ can be calculated or specified
+I have 2 different codes for different needs. If you only use linear you might want `lerp2()`. `lerp()` will be used in our next function
 
 ----
 
-How to use?
+How to use it?
 1. Specify 
     a. Initial position
     b. Speed
@@ -427,7 +427,7 @@ def parab(p0, v0, v1, t0, t1, step=1):
     return (t,s,v,a)
 ```
 
-How to use? Specify:
+How to use it? Specify:
 1. Initial pose
 2. Speed before via
 3. Speed after via
@@ -542,12 +542,12 @@ def lspb(via,dur,tb):
 
 ----
 
-How to use? Specify:
+How to use it? Specify:
 1. All the via
 2. All the duration between via
 3. Blend time
 
-In Ref [[1]](https://link.springer.com/book/10.1007%2F978-3-642-20144-8) [[2]](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040) they prefer acceleration on each via as input. But I follow [[3]](https://smartech.gatech.edu/bitstream/handle/1853/41948/ParabolicBlends.pdf) to use blend time as input, because it is more intuitive, easy to imagine and understand. Instead of duration between via, we cound use specific time each via, it will be easier to code. But dont input $t_b=0$ that means infinite acceleration in that blend $a=\frac{(v_1-v_0)}{t_b}$
+In Ref [[1]](https://link.springer.com/book/10.1007%2F978-3-642-20144-8) [[2]](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040) they prefer acceleration on each via as input. But I follow [[3]](https://smartech.gatech.edu/bitstream/handle/1853/41948/ParabolicBlends.pdf) to use blend time as an input because it is more intuitive, easy to imagine and understand. Instead of duration between via, we could use specific time each via, it will be easier to code. But don't input $t_b=0$ that means infinite acceleration in that blend $a=\frac{(v_1-v_0)}{t_b}$
 
 ----
 
