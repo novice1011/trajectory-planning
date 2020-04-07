@@ -13,6 +13,8 @@ slideOptions:
 
 Summary from book of [Professor Peter Corke](https://link.springer.com/book/10.1007%2F978-3-642-20144-8) and [John J. Craig](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)
 
+For better look check this note in [HackMD.io](https://hackmd.io/@libernormous/trajectory-planning)
+
 by:
 [Liber Normous](https://hackmd.io/@libernormous)
 
