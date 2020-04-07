@@ -309,7 +309,7 @@ RESULT:
 4. We use via a transition between linear movement
 5. Around this via we introduce blend time to smooth the speed transition
 6. On linear area speed is constant
-7. On parabolic area acceleration is constant but speed is changing  from $v_0$ to $0$ then to $v_f$
+7. On parabolic area acceleration is constant but speed is changing, for example  from $v_0$ to $0$ then to $v_f=-v_0$. 
 
 ----
 
@@ -562,6 +562,7 @@ res=lspb(via,dur,tb)
 plt.plot(res[2],via,'*',res[3],res[4])
 ```
 RESULT:
+
 ![](https://i.imgur.com/LVZffTD.png)
 
 ----
@@ -576,6 +577,36 @@ plt.plot(res[3],res[6])
 
 ![](https://i.imgur.com/GLwGNHx.png)
 
+
+----
+
+Let's try anoter
+CODE:
+```python=0
+# %%
+via = np.asarray([0,30,40,10,0])-20
+dur = np.asarray([20,20,20,20])
+tb = np.asarray([1,1,1,1,1])*5
+res=lspb(via,dur,tb)
+
+plt.plot(res[2],via,'*',res[3],res[4])
+```
+
+![](https://i.imgur.com/4a59pkN.png)
+
+
+----
+This thime the transition speed is not zero
+```python=0
+# %%
+plt.plot(res[2],np.zeros(via.size),'*')
+plt.plot(res[3],res[5])
+plt.plot(res[3],res[6])
+```
+
+![](https://i.imgur.com/CU2yTOo.png)
+
+----
 
 ---
 
