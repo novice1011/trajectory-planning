@@ -612,5 +612,7 @@ plt.plot(res[3],res[6])
 
 # References
 [[1] Robotics vision and control Professor Peter Corke p.44](https://link.springer.com/book/10.1007%2F978-3-642-20144-8)
+
 [[2] Introduction to robotics John J. Craig p.207](http://www.mech.sharif.ir/c/document_library/get_file?uuid=5a4bb247-1430-4e46-942c-d692dead831f&groupId=14040)
+
 [[3] Turning Paths Into Trajectories Using Parabolic Blends Tobias Kunz and Mike Stilman](https://smartech.gatech.edu/bitstream/handle/1853/41948/ParabolicBlends.pdf)
