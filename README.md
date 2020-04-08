@@ -293,6 +293,7 @@ plt.title('Acceleration delayed')
 ----
 
 RESULT:
+
 ![](https://i.imgur.com/tgQfCLT.png)
 
 ---
@@ -322,7 +323,7 @@ q(t) = q_i + v_i*(t-T_i)\\
 $$
 
 Where $T_i$ is the time delay. $v_i$ can be calculated or specified
-I have 2 different codes for different needs. If you only use linear you might want `lerp2()`. `lerp()` will be used in our next function
+I have 2 different codes for different needs. If you only use linear you might want `line2()`. `line()` will be used in our next function
 
 ----
 
@@ -343,7 +344,7 @@ How to use it?
 CODE:
 ```python=0
 # function for linear interpolation
-def lerp(point0, v0, t0, t1, step=1):
+def line(point0, v0, t0, t1, step=1):
     # Generate a series of timestep
     t = np.arange(t0, t1+step,step)#makit one column
     # Calculate velocity
@@ -357,7 +358,7 @@ def lerp(point0, v0, t0, t1, step=1):
     return (t,s,v,a)
 
 # function for linear interpolation
-def lerp2(point0, point1, t0, t1, step=1):
+def line2(point0, point1, t0, t1, step=1):
     # Generate a series of timestep
     t = np.arange(t0, t1+step,step)#makit one column
     # Calculate velocity
@@ -374,27 +375,31 @@ def lerp2(point0, point1, t0, t1, step=1):
 
 ----
 
-### Example LERP 1
+### Example 1
 CODE:
 ```python=0
+# %%
 # Call function
-y = lerp(0,1,-10,10,1)
-plt.title('LERP')
+y = line(0,1,-10,10,1)
+plt.title('LINE')
 plt.plot(y[0],y[1])
 ```
-![](https://i.imgur.com/1wzexRg.png)
+![](https://i.imgur.com/UMryohx.png)
+
 
 ----
 
-### Example LERP 2
+### Example 2
 CODE:
 ```python=0
+#%%
 # Call function
-y = lerp(0,1,-10,10,1)
-plt.title('LERP')
+y = line2(10,20,-10,10,1)
+plt.title('LINE2')
 plt.plot(y[0],y[1])
 ```
-![](https://i.imgur.com/mpv6WfH.png)
+![](https://i.imgur.com/cBfzRTX.png)
+
 
 ----
 
@@ -605,8 +610,6 @@ plt.plot(res[3],res[6])
 ```
 
 ![](https://i.imgur.com/CU2yTOo.png)
-
-----
 
 ---
 
